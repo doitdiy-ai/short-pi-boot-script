@@ -20,7 +20,7 @@ Each of these can be done on an SD card with Raspbian or on the downloaded *.img
 ### Configure the files for your configuration
 This requires the *unattended* file and a change to the file *cmdline.txt* on the boot partition.
 
-1. Download the file [unattended](./unattended) from this project
+1. Download the file [unattended](./unattended) from this project.
 2. Open the file for editing. Look at section 2: modify as needed \*
 3. Save the file and put it on the boot partition. Now open *cmdline.txt*, which is already on that partition \*\*
 4. Remove the item with `init=` (if it is there) and put the following at the end of the line:
@@ -53,6 +53,3 @@ which emits the integer in hexadecimal notation, like `402e4a57` (example value,
 
 ## References
 These files are largely based on the scripts from Jim Danner, you can find his gitlab repo [here](https://gitlab.com/JimDanner/pi-boot-script). My version here is only his basic version with a few additions. If you want to do more advanced configuration, his version is hugely more capable.
-
-
-

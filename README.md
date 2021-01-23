@@ -17,12 +17,11 @@ Doing it only with the */boot* partition is attractive because Macs and Windows 
 ## Usage
 Each of these can be done on an SD card with Raspbian or on the downloaded *.img* disk image, which you can then flash to any number of SD cards. Most computers auto-mount the */boot* partition when you insert the SD card or double-click the *.img* file.
 
-From very limited to an elaborate configuration:
-### 1. Basic: just run a few shell commands
+### Configure the files for your configuration
 This requires the *unattended* file and a change to the file *cmdline.txt* on the boot partition.
 
 1. Download the file [unattended](./unattended) from this project
-2. Open the file for editing. Look at section 2: remove what is there, and put your commands there. \*
+2. Open the file for editing. Look at section 2: modify as needed \*
 3. Save the file and put it on the boot partition. Now open *cmdline.txt*, which is already on that partition \*\*
 4. Remove the item with `init=` (if it is there) and put the following at the end of the line:
 ```
@@ -30,16 +29,9 @@ init=/bin/bash -c "mount -t proc proc /proc; mount -t sysfs sys /sys; mount /boo
 ```
 5. Save the file, eject the SD card or .img file, and you're done.
 
-***Example***: at section 2 of *unattended*, you could put the command
-
-```bash
-raspi-config nonint do_hostname MyLittlePi
-```
-to change the hostname of the Pi.
-
 \* when your commands run, the PATH is `/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:.`; the working directory is `/`; the entire Linux partition is available; systemd isn't up yet so there are no services, the network is unavailable, and the system thinks it's January 1st, 1970.
 
-\*\* the [cmdline.txt](./cmdline.txt) in this project is from Raspbian Buster Lite 2020-02-13. If you happen to have that version, you can drop my cmdline.txt in.
+\*\* the [cmdline.txt](./cmdline.txt) in this project is from Raspberry Pi OS with Desktop from 2020-12-02. If you happen to have that version, you can drop my cmdline.txt in.
 
 ## Warnings and recovery
 You probably wouldn't do this sort of thing to an SD card that holds all your most important files, or that is urgently needed in a production situation. Remember that these scripts are all-powerful: they run as the administrator, so `rm -rf /` will *really* erase everything. To state the obvious, ***I don't accept any responsibility for what you do to your system using this***. Also, it's advisable to test it before using it when it matters.
@@ -56,7 +48,7 @@ which emits the integer in hexadecimal notation, like `402e4a57` (example value,
 * append `-02` for the root partition, and put the result in *cmdline.txt* in the form `root=PARTUUID=402e4a57-02`
 
 ## References
-These files are largely on the sccripts from Jim Danner, you can find his gitlab repo [here](https://gitlab.com/JimDanner/pi-boot-script). My version here is only his basic version. If you want to do more advanced configuration, his version is hugely more capable.
+These files are largely based on the sccripts from Jim Danner, you can find his gitlab repo [here](https://gitlab.com/JimDanner/pi-boot-script). My version here is only his basic version with a few additions. If you want to do more advanced configuration, his version is hugely more capable.
 
 
 

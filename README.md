@@ -48,7 +48,7 @@ which emits the integer in hexadecimal notation, like `402e4a57` (example value,
 * append `-02` for the root partition, and put the result in *cmdline.txt* in the form `root=PARTUUID=402e4a57-02`
 
 ## References
-These files are largely based on the sccripts from Jim Danner, you can find his gitlab repo [here](https://gitlab.com/JimDanner/pi-boot-script). My version here is only his basic version with a few additions. If you want to do more advanced configuration, his version is hugely more capable.
+These files are largely based on the scripts from Jim Danner, you can find his gitlab repo [here](https://gitlab.com/JimDanner/pi-boot-script). My version here is only his basic version with a few additions. If you want to do more advanced configuration, his version is hugely more capable.
 
 
 

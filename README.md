@@ -35,7 +35,7 @@ init=/bin/bash -c "mount -t proc proc /proc; mount -t sysfs sys /sys; mount /boo
 
 \* when your commands run, the PATH is `/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:.`; the working directory is `/`; the entire Linux partition is available; systemd isn't up yet so there are no services, the network is unavailable, and the system thinks it's January 1st, 1970.
 
-\*\* the [cmdline.txt](./cmdline.txt) in this project is from Raspberry Pi OS with Desktop from 2020-12-02. If you happen to have that version, you can drop my cmdline.txt in.
+\*\* the [cmdline.txt](./cmdline.txt) in this project is from Raspberry Pi OS with Desktop from 2021-01-11. If you happen to have that version, you can drop my cmdline.txt in.
 
 ## Warnings and recovery
 You probably wouldn't do this sort of thing to an SD card that holds all your most important files, or that is urgently needed in a production situation. Remember that these scripts are all-powerful: they run as the administrator, so `rm -rf /` will *really* erase everything. To state the obvious, ***I don't accept any responsibility for what you do to your system using this***. Also, it's advisable to test it before using it when it matters.

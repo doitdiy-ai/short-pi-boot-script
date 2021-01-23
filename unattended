@@ -5,13 +5,18 @@ mount / -o remount,rw
 sed -i 's| init=.*||' /boot/cmdline.txt
 
 # 2. THE USEFUL PART OF THE SCRIPT
-[[ -d /boot/payload/home/pi ]] && sudo -u pi cp --preserve=timestamps -r\
- /boot/payload/home/pi /home/ && rm -rf /boot/payload/home/pi
-[[ -d /boot/payload ]] && cp --preserve=timestamps -r /boot/payload/* /\
- && rm -rf /boot/payload
-[[ -f /lib/systemd/system/one-time-script.service ]] && ln -s\
- /lib/systemd/system/one-time-script.service\
- /etc/systemd/system/multi-user.target.wants/
+# Enable SSH
+raspi-config nonint do_ssh 0
+# Enable VNC
+raspi-config nonint do_vnc 0
+# Change the hostname to something recognizable
+raspi-config nonint do_hostname YOURHOSTNAMEHERE
+# Set the screen resolution to 1920 x 1080, especially important for VNC to work if running headless
+raspi-config nonint do_resolution 2 82
+# enable the camera (optional)
+raspi-config nonint do_camera 0
+echo "Completed custom configuration"
+sleep 5
 
 # 3. CLEANING UP AND REBOOTING
 sync

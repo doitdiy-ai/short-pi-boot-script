@@ -27,7 +27,11 @@ This requires the *unattended* file and a change to the file *cmdline.txt* on th
 ```
 init=/bin/bash -c "mount -t proc proc /proc; mount -t sysfs sys /sys; mount /boot; source /boot/unattended"
 ```
-5. Save the file, eject the SD card or .img file, and you're done.
+5. Save the file
+6. Download the file [wpa_supplicant.conf](./wpa_supplicant.conf) from this project
+7. Open the file for editing and modify YOURWIFINETWORKNAME and WIFIPASSWORD to match your wifi network
+8. Save the file and put it on the boot partition.
+5. Eject the SD card or .img file, and you're done.
 
 \* when your commands run, the PATH is `/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:.`; the working directory is `/`; the entire Linux partition is available; systemd isn't up yet so there are no services, the network is unavailable, and the system thinks it's January 1st, 1970.
 

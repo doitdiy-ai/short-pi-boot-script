@@ -15,8 +15,21 @@ raspi-config nonint do_hostname YOURHOSTNAMEHERE
 raspi-config nonint do_resolution 2 82
 # enable the camera (optional)
 raspi-config nonint do_camera 0
+# Set timezone
+raspi-config nonint do_change_timezone America/Chicago
+# Set locale
+raspi-config nonint do_change_locale en_US.UTF.8
+# Set keyboard
+raspi-config nonint do_configure_keyboard us
+# Set password, uncomment (remove pound sign) if you want to set the pi password here
+sed -i 's/\r$//' /boot/pipassword
+#usermod --password $(openssl passwd -1 $(cat /boot/pipassword)) pi
+rm /boot/pipassword
+# Remove autostart of welcome to raspberry pi
+rm /etc/xdg/autostart/piwiz.desktop
 echo "Completed custom configuration"
 sleep 5
+
 
 # 3. CLEANING UP AND REBOOTING
 sync

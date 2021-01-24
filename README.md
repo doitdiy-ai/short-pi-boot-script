@@ -18,7 +18,7 @@ Doing it only with the */boot* partition is attractive because Macs and Windows 
 Each of these can be done on an SD card with Raspbian or on the downloaded *.img* disk image, which you can then flash to any number of SD cards. Most computers auto-mount the */boot* partition when you insert the SD card or double-click the *.img* file.
 
 ### Configure the files for your configuration
-This requires the *unattended* file and a change to the file *cmdline.txt* on the boot partition.
+This requires the *cmdline.txt*, *unattended*, *pipassword* and *wpa_supplicant.conf* files, which will need to be modified as follows.
 
 1. Download the files as [zip file](https://github.com/doitdiy-ai/short-pi-boot-script/archive/master.zip) from this project and unzip
 2. Insert a freshly imaged SD card in your SD card reader and open it in a file browser
@@ -39,6 +39,8 @@ PARTUUID=904a3764-02
 14. Modify YOURWIFINETWORKNAME and WIFIPASSWORD to match your wifi network, and save and close the file
 15. Copy all 4 files: *cmdline.txt*, *unattended*, *pipassword* and *wpa_supplicant.conf* to the SD card
 16. Eject the SD card, insert in your raspberry pi and boot it up
+
+These scripts will enable ssh, vnc and a picamera. They'll set the hostname, the pi user's password, the screen resolution, locale, timezon and keyboard type. Feel free to modify, but make sure you enter valid values. If you're running headless, or even with a screen attached, bugs are hard to track down.
 
 \* when your commands run, the PATH is `/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:.`; the working directory is `/`; the entire Linux partition is available; systemd isn't up yet so there are no services, the network is unavailable, and the system thinks it's January 1st, 1970.
 

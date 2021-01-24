@@ -40,7 +40,7 @@ PARTUUID=904a3764-02
 15. Copy all 4 files: *cmdline.txt*, *unattended*, *pipassword* and *wpa_supplicant.conf* to the SD card
 16. Eject the SD card, insert in your raspberry pi and boot it up
 
-These scripts will enable ssh, vnc and a picamera. They'll set the hostname, the pi user's password, the screen resolution, locale, timezon and keyboard type. Feel free to modify, but make sure you enter valid values. If you're running headless, or even with a screen attached, bugs are hard to track down.
+These scripts will enable ssh, vnc and a picamera. They'll set the hostname, the pi user's password, the screen resolution, locale, timezone and keyboard type. Feel free to modify, but make sure you enter valid values. If you're running headless, or even with a screen attached, bugs are hard to track down.
 
 \* when your commands run, the PATH is `/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:.`; the working directory is `/`; the entire Linux partition is available; systemd isn't up yet so there are no services, the network is unavailable, and the system thinks it's January 1st, 1970.
 

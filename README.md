@@ -20,22 +20,29 @@ Each of these can be done on an SD card with Raspbian or on the downloaded *.img
 ### Configure the files for your configuration
 This requires the *unattended* file and a change to the file *cmdline.txt* on the boot partition.
 
-1. Download the file [unattended](./unattended) from this project.
-2. Open the file for editing. Look at section 2: modify as needed \*
-3. Save the file and put it on the boot partition. Now open *cmdline.txt*, which is already on that partition \*\*
-4. Remove the item with `init=` (if it is there) and put the following at the end of the line:
+1. Download the files as [zip file](https://github.com/doitdiy-ai/short-pi-boot-script/archive/master.zip) from this project and unzip
+2. Insert a freshly imaged SD card in your SD card reader and open it in a file browser
+3. Open *cmdline.txt* that is on the SD card, and take note of the PARTUUID section, it'll look like this:
 ```
-init=/bin/bash -c "mount -t proc proc /proc; mount -t sysfs sys /sys; mount /boot; source /boot/unattended"
+PARTUUID=904a3764-02
 ```
-5. Save the file
-6. Download the file [wpa_supplicant.conf](./wpa_supplicant.conf) from this project
-7. Open the file for editing and modify YOURWIFINETWORKNAME and WIFIPASSWORD to match your wifi network
-8. Save the file and put it on the boot partition.
-5. Eject the SD card or .img file, and you're done.
+4. Open a text editor like Notepad on your PC and copy the string `904a3764-02` (this string may vary based on the OS image that was put on the SD card)
+5. Close the *cmdline.txt*. Next open the downloaded *cmdline.txt* (should be in the `short-pi-boot-script` folder)
+6. Replace the string right after `PARTUUID=` with what you just copied into Notepad. Save and close *cmdline.txt*.
+7. Open the downloaded file *unattended* with an editor like Notepad
+8. Replace the test YOURHOSTNAMEHERE with the hostname that you'd like your raspberry pi to have.
+9. If you want to change the default password of the pi user, find the line that starts with `#usermod` and remove the `#`
+10. Save and close the file.
+11. If you want to change the default password of the pi user, you'll also have to open *pipassword* with an editor like Notepad
+12. Replace the text YOURPASSWORDHERE with the password that you'd like the pi user to have, and save and close
+13. Open the file *wpa_supplicant.conf* with an editor like Notepad
+14. Modify YOURWIFINETWORKNAME and WIFIPASSWORD to match your wifi network, and save and close the file
+15. Copy all 4 files: *cmdline.txt*, *unattended*, *pipassword* and *wpa_supplicant.conf* to the SD card
+16. Eject the SD card, insert in your raspberry pi and boot it up
 
 \* when your commands run, the PATH is `/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:.`; the working directory is `/`; the entire Linux partition is available; systemd isn't up yet so there are no services, the network is unavailable, and the system thinks it's January 1st, 1970.
 
-\*\* the [cmdline.txt](./cmdline.txt) in this project is from Raspberry Pi OS with Desktop from 2021-01-11. If you happen to have that version, you can drop my cmdline.txt in.
+\*\* the [cmdline.txt](./cmdline.txt) in this project is from Raspberry Pi OS with Desktop from 2021-01-11. If you happen to have that version, you can drop my cmdline.txt in (no need to modify the string after `PARTUUID=`).
 
 ## Warnings and recovery
 You probably wouldn't do this sort of thing to an SD card that holds all your most important files, or that is urgently needed in a production situation. Remember that these scripts are all-powerful: they run as the administrator, so `rm -rf /` will *really* erase everything. To state the obvious, ***I don't accept any responsibility for what you do to your system using this***. Also, it's advisable to test it before using it when it matters.
